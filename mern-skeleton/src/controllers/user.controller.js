@@ -1,6 +1,6 @@
 import User from "../models/user.model";
 
-import _ from "lodash";
+import _ from 'lodash';
 
 import errorHandler from "../helpers/dbErrorHandler";
 
@@ -38,7 +38,7 @@ const userByID = (req, res, next, id) => {
 
     })
 }
-const read = (req, res, next) => {
+const read = (req, res) => {
     req.profile.hashed_password = undefined;
     req.profile.salt = undefined;
     res.status(200).json(req.profile)
@@ -46,7 +46,7 @@ const read = (req, res, next) => {
 
 const update = (req, res, next) => {
     let user = req.profile;
-    user = _.extend(user.req.body);
+    user = _.extend(user,req.body);
     user.updated = Date.now();
     user.save((err) => {
         if (err) {
