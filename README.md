@@ -77,7 +77,69 @@ To install helmet module you need this command line:
 `npm install helmet --save`
 
 5.  ### cors
-We use cors t o enable Cross origin resource sharing
+We use cors to enable Cross origin resource sharing
 To install cors module you need this command line:
 `npm install cors --save`
 
+###  Mongoose
+
+We will use moongose to connect our app on MongoDB and we will use Mongoose module to implement user model.
+
+### How to install Mongoose
+
+To install Mongoose you need to type this command line in terminal:
+
+`npm install mongoose --save`
+
+Url for conencting App with MongoDB is:
+`mongodb://localhost:27017/mernproject`
+
+###  Json Web Token
+
+To enable functionality about authentification and authorization we need Json Web Token.
+
+### How to install Json Web Token
+
+To install Json Web Token you need to type this command line in terminal:
+
+`npm install express-jwt jsonwebtoken --save`
+
+## Testing
+
+Because our app only have backend,somehow we need to test our CRUD operations. We will do it with Postman or any other app for API testing.\
+If you want to to download Postman you can do it on this link [Postman](https://www.postman.com)
+
+Currently in our application we can test this functionalites:
+
+1. ### Listing all users
+For this functionality we just need to GET all users with `/api/users/`\
+If everything is OK we should get array of all users and their informations,but if something is wrong with code we should get error message.
+
+2. ### Adding new user
+
+We will add new user with POST method on `/api/users/` request.What we need to do before sending request is to add `key: Content-Type` and `value: application/json` in Header because we want to send json file to our app and to recive json file aswell.Then in Body we need to write information about our new user. We need to add name,email and password.
+All 3 of them are required to create new user.If everything is good we should see message that we created new user, if not we will see error message.
+
+**Note: You cant create user with same email**
+
+3. ### Deleting user
+
+To delete user we need DELETE method on `/api/users/:id` request.For this method we need id of user that we want to delete.If you forgot user id you can always get list of all users and see it again.One more thing,you can only delete your own account and to use this function you need to signin on our app otherwise you wont be able to delete user.If you try to delete other prifile you will get error.
+
+
+4. ### Update user
+
+Firstly you can only update your profile and to be able to update it you will need to be signed in app. If you are not then you wont be able to update user.If you are signed, you need PUT method on `/api/users/:id` request.In body you should write your new informations and send request.If everything went good your profile will be updated and if not you will see error message.If you try to update other prifile you will get error.
+
+5. ### Get one user
+
+Just like before you can get single user only if you are signed in on our application. To get single user you need to GET method on `/api/users/:id` request. You need to know your id. If everything went good you should see profile info with that id if not you will see error message.
+
+5. ### Sign in
+
+To sign in on this application you need to have your own profile.If you have it then you need to use POST method on `/auth/signin` request.In body you should write your email and password, if everything is good you should get token in result.You need to copy that token and make new Header with `key: Authorization` and `value: Bearer + your token`.After that you will be able to delete update and get single user inforomation.
+
+
+5. ### Sign out
+
+To sign out you simple need to use GET method on `/auth/signout` request and you will be logged out if everything is good with code.
